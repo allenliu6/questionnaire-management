@@ -1,0 +1,86 @@
+body{
+	background-color: #f1f1f1;
+}
+header{
+	background-color: #EE7419;
+	padding-left: 50px;
+}
+header span{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: #fff;
+	text-align: center;
+	line-height: 20px;
+}
+header h3{
+	display: inline-block;
+	color: #fff
+}
+header strong{
+	display: inline-block;
+	margin-left: 50px;
+	color: #fff;
+}
+
+content{
+	width: 100%;
+}
+content table{
+	border-collapse: collapse; 
+	width: 75%;
+	margin: 50px auto;
+}
+content table tbody{
+	background-color: #fff;
+	text-align: center;
+}
+content table tfoot{
+	width: 100%;
+	background-color: #fff;
+}
+content table tr{
+	height: 50px;
+	line-height: 50px;
+	border-bottom: solid 1px #efefef;
+}
+content table button{
+	width: 80px;
+	height: 30px;
+	border: solid 1px #f1f1f1;
+	background-color: #fff;
+	border-radius: 10px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+content table thead button{
+	margin-left: 20px;
+	background-color: #EE7419;
+	border: 0;
+	border-radius: 4px;
+}
+
+content table tbody tr td:nth-child(2){
+	text-align: left;
+}
+
+content table tr th:nth-child(1){
+	width: 5%;
+}
+
+content table tr th:nth-child(2){
+	width: 25%;
+}
+
+content table tr th:nth-child(3){
+	width: 25%;
+}
+
+content table tr th:nth-child(4){
+	width: 10%;
+}
+content table tr th:nth-child(5){
+	width: 40%;
+}
