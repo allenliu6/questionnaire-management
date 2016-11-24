@@ -1,5 +1,8 @@
-body{
+html,body{
 	background-color: #f1f1f1;
+	height: 100%;
+	position: relative;
+	margin:0;
 }
 header{
 	background-color: #EE7419;
@@ -24,6 +27,75 @@ header strong{
 	color: #fff;
 }
 
+#windowDom{
+	display: none;
+}
+
+#shadow {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+}
+
+#windowDom .popup{
+	width: 350px;
+	height: 150px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+#windowDom .popup div:nth-child(1){
+	width: 100%;
+	height: 25%;
+	text-align: left;
+	background-color: #EFEFEF;
+	border-radius: 5px 5px 0 0;
+}
+#windowDom .popup div:nth-child(1) span{
+	font-weight: bold;
+	margin: 0 230px 0 40px;
+}
+#windowContent{
+	height: 50%;
+	width: 100%;
+}
+#windowBottom{
+	height: 25%;
+	width: 100%;
+	text-align: center;
+}
+
+#windowBottom button{
+	width: 80px;
+	height: 30px;
+	cursor: pointer;
+	background-color: #fff;
+	border-style: none;
+	border: 1px solid #EFEFEF;
+}
+#windowBottom button:nth-child(1){
+	background-color: #EE7419;
+}
+
+#closeWindow{
+	cursor: pointer;
+	border: 0;
+	background-color: #EFEFEF;	
+	color: #626262;
+	font-size: 16px;
+	margin-top: 8px;
+}
+#closeWindow:hover{
+	color: red;
+}
+
+
 content{
 	width: 100%;
 }
@@ -32,7 +104,7 @@ content table{
 	width: 75%;
 	margin: 50px auto;
 }
-content table tbody{
+#tableBody{
 	background-color: #fff;
 	text-align: center;
 }
@@ -40,6 +112,7 @@ content table tfoot{
 	width: 100%;
 	background-color: #fff;
 }
+
 content table tr{
 	height: 50px;
 	line-height: 50px;
@@ -53,17 +126,34 @@ content table button{
 	border-radius: 10px;
 	margin-right: 5px;
 	cursor: pointer;
+	font-size: 16px;
 }
 
-content table thead button{
+#createQuestion{
+	width: 90px;
 	margin-left: 20px;
 	background-color: #EE7419;
 	border: 0;
 	border-radius: 4px;
 }
 
-content table tbody tr td:nth-child(2){
+#tableBody tr td:nth-child(2){
 	text-align: left;
+}
+
+#tableBody tr:hover{
+	background-color: #ffefd5;
+}
+
+#tableBody button:hover,#deleteMore:hover{
+	background-color: #EE7419;
+}
+
+content table tfoot tr td:nth-child(1){
+	text-align:center;
+}
+content table tfoot button{
+	margin-left: 30px;
 }
 
 content table tr th:nth-child(1){

@@ -11,6 +11,26 @@
 	<h3>问卷管理</h3>
 	<strong>我的问卷</strong>
 </header>
+
+<div id="wind">
+	<div id="shadow"></div>
+	<div class="popup">
+		<div>
+			<span>提示</span>
+			<input type="button" name="" id="closeWindow" value="X">
+		</div>
+
+		<div id="windowContent">
+			
+		</div>
+
+		<div id="windowBottom">
+			<button>确认</button>
+			<button>返回</button>
+		</div>
+	</div>
+</div>
+	
 <content>
 	<table>
 		<thead>
@@ -19,37 +39,26 @@
 				<th>标题</th>
 				<th>时间</th>
 				<th>状态</th>
-				<th>操作<button>+新建问卷</button></th>
+				<th>操作<button id="createQuestion">+新建问卷</button></th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td><input type="checkbox" name=""></td>
-				<td>问卷1</td>
-				<td>2016-04-30 11:11:11</td>
-				<td>发布中</td>
-				<td><button>编辑</button><button>删除</button><button>查看数据</button></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name=""></td>
-				<td>问卷1</td>
-				<td>2016-04-30 11:11:11</td>
-				<td>发布中</td>
-				<td><button>编辑</button><button>删除</button><button>查看数据</button></td>
-			</tr>
+		<tbody id="tableBody">
+			
 		</tbody>
 		<tfoot>
 			<tr>
-				<td><input type="checkbox" name="">全选</td>
-				<td><button>删除</button></td>
+				<td><input type="checkbox" id="chooseAll"></td>
+				<td>全选<button id="deleteMore">删除</button></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 		</tfoot>
 	</table>
 </content>
 
-
-<script type="text/javascript">
-	
+<script src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="main50.js">
 </script>
 </body>
 </html>
