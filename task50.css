@@ -59,9 +59,10 @@ header strong{
 }
 #windowDom .popup div:nth-child(1) span{
 	font-weight: bold;
-	margin: 0 230px 0 40px;
+	display: inline-block;
+	float: left;
 }
-#windowContent{
+.winContent{
 	height: 50%;
 	width: 100%;
 }
@@ -89,7 +90,8 @@ header strong{
 	background-color: #EFEFEF;	
 	color: #626262;
 	font-size: 16px;
-	margin-top: 8px;
+	float: right;
+	margin: 10px 20px 0 0;
 }
 #closeWindow:hover{
 	color: red;
