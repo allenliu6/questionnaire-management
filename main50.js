@@ -26,7 +26,6 @@
 		support
 	*/
 
-
 	var data = [{
 		name:"问卷1",
 		deadline:"2016-11-30 11:11:11",
@@ -49,6 +48,8 @@
 		content:[{title:"试验", type:1, option:["正确","错误"]}]
 	}];
 
+	
+
 	var table = {
 		tableBody: getId("tableBody"),//table tbody
 		data : data,
@@ -58,7 +59,7 @@
 		init(){
 			this.render();
 			this.addEvent();
-
+			localStorage.qnData = JSON.stringify(this.data);
 		},
 
 		//渲染tbody内容
@@ -99,9 +100,7 @@
 			for( let i = 0; i < deleteBut.length; i++ ){
 				deleteBut[i].onclick = (function (n){
 					return function (){
-						console.log(n);
 						_this.__proto__.deleteQueue = [n];
-						console.log(_this.__proto__);
 						alertObj.windowInit( _this.data[n].name, _this );
 					};
 				})(i);
@@ -116,13 +115,14 @@
 
 						detail += _this.data[i].name;
 					}
-				}console.log( _this.__proto__.deleteQueue );
+				}
 				if( detail ){
 					alertObj.windowInit( detail, _this );
 					chooseAll.checked = "";
 				}
 
 			};
+
 		},
 
 		deleteDate(){
@@ -133,7 +133,6 @@
 				//彻底删除?  关于addEvent函数删除按钮 单选框的引用  全部删除后addEvent被回收吗？
 			}
 			this.init();
-
 		}
 
 	};
@@ -157,7 +156,7 @@
 		},
 
 		//初始化 
-    	windowInit( content, self ){
+    	windowInit( content, self ){//传递第二个参数为引用window的主体对象
 			this.windowDom.style.display = "block";
 			this.windowContent.innerHTML = content;
 
@@ -168,7 +167,7 @@
 				this.addEvents( this.buttons[0], "click" );
 				this.iscreated = true;
 				this.buttons[0].addEventListener( "click", function(){
-					self.deleteDate();//??????return 返回值在table类中验证代替传参
+					self.deleteDate();
 				});
 			}
 		},

@@ -10,6 +10,7 @@ header{
 }
 header span{
 	display: inline-block;
+	color: #EE7419;
 	width: 20px;
 	height: 20px;
 	border-radius: 10px;
@@ -120,7 +121,7 @@ content table tr{
 	line-height: 50px;
 	border-bottom: solid 1px #efefef;
 }
-content table button{
+content table button,#createQuestion{
 	width: 80px;
 	height: 30px;
 	border: solid 1px #f1f1f1;
@@ -133,10 +134,14 @@ content table button{
 
 #createQuestion{
 	width: 90px;
+	line-height: 30px;
 	margin-left: 20px;
 	background-color: #EE7419;
 	border: 0;
 	border-radius: 4px;
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
 }
 
 #tableBody tr td:nth-child(2){
