@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>问卷调查系统</title>
+	<link rel="stylesheet" type="text/css" href="createTool.css">
+</head>
+<body>
+<header>
+	<span>?</span>
+	<h3>问卷管理</h3>
+	<a href="task50.html">我的问卷</a>
+</header>
+
+	<div id="calendarPosition">
+		<div id="head">
+			<div class="headLeft">
+				<span id="setLastYear"><<</span>
+				<span id="setLastMonth"><</span>
+			</div>
+			<span id="headContent">
+				<select id="selectMonth">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+				</select>
+				<select id="selectYear">
+					<option>2000</option>
+					<option>2001</option>
+					<option>2002</option>
+					<option>2003</option>
+					<option>2004</option>
+					<option>2005</option>
+					<option>2006</option>
+					<option>2007</option>
+					<option>2008</option>
+					<option>2009</option>
+					<option>2010</option>
+					<option>2011</option>
+					<option>2012</option>
+					<option>2013</option>
+					<option>2014</option>
+					<option>2015</option>
+					<option>2016</option>
+					<option>2017</option>
+					<option>2018</option>
+				</select>
+			</span>
+			<div class="headRight">
+				<span id="setNextMonth">></span>
+				<span id="setNextYear">>></span>
+			</div>
+		</div>
+		<table id="table">
+			<thead>
+				<tr>
+					<th>日</th>
+					<th>一</th>
+					<th>二</th>
+					<th>三</th>
+					<th>四</th>
+					<th>五</th>
+					<th>六</th>
+				</tr>
+			</thead>
+			<tbody id="tbody">
+				
+			</tbody>
+		</table>
+	</div>
+
+
+<div id="windowDom">
+	<div id="shadow"></div>
+	<div class="popup">
+		<div class="winHeader">
+			<div id="addTypeText">添加</div>
+			<input type="button" id="closeWindow" value="X">
+		</div>
+
+		<div class="winContent">
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请分别在下面的框中填写问题的名称以及选项，选项用逗号‘,’分隔开(不提供错误提示，请核对后再点确认)<br><br>
+			<div id="windowContent">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称:&nbsp;&nbsp;<input type="text" id="quesTitle"><br><br>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选项:&nbsp;&nbsp;<input type="text" id="quesContent"><br><br></span>
+			</div>
+		</div>
+
+		<div id="windowBottom">
+			<button>确认</button>
+			<button>返回</button>
+		</div>
+	</div>
+</div>
+
+<content>
+	<div id="createBody">
+		<input type="text" value="这里是问卷标题" id="setTitle">
+		<div class="questionBorder">
+			<div id="paperContent">
+				<!-- <div class="questionDetail">
+					<p>Q1</p>
+
+					<div class="detailRight">
+						<div>单选题</div>
+						<div>
+							<input type="radio">选项一
+						</div>
+						<div>
+							<input type="radio">选项二
+						</div>
+
+						<div>
+							<a href="">上移</a>
+							<a href="">下移</a>
+							<a href="">复用</a>
+							<a href="">删除</a>
+						</div>
+					</div>
+
+				</div> -->
+			</div>
+			<div class ="questionInclude">
+				<div id="questionType">
+					<button>单选</button>
+					<button>多选</button>
+					<button>文本</button>
+				</div>
+				<div class="questionColor">
+					<div id="addQuestion">
+						<span>+</span><span>&nbsp;&nbsp;&nbsp;&nbsp;增加问题</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="qusetionFoot">
+			<div class ="setDeadline">
+				问卷截止日期:&nbsp;&nbsp;<input id="dataInput">
+				
+			</div>
+			<div class="buttons">
+				<button>保存问卷</button>
+				<button>发布问卷</button>
+			</div>
+		</div>
+	</div>
+</content>
+<script type="text/javascript" src="support.js"></script>
+<script type="text/javascript" src="windowAlert.js"></script>
+<script type="text/javascript" src="createTool.js"></script>
+<script type="text/javascript" src="calendar.js"></script>
+
+</body>
+</html>
