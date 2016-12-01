@@ -12,72 +12,6 @@
 	<a href="task50.html">我的问卷</a>
 </header>
 
-	<div id="calendarPosition">
-		<div id="head">
-			<div class="headLeft">
-				<span id="setLastYear"><<</span>
-				<span id="setLastMonth"><</span>
-			</div>
-			<span id="headContent">
-				<select id="selectMonth">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-					<option>6</option>
-					<option>7</option>
-					<option>8</option>
-					<option>9</option>
-					<option>10</option>
-					<option>11</option>
-					<option>12</option>
-				</select>
-				<select id="selectYear">
-					<option>2000</option>
-					<option>2001</option>
-					<option>2002</option>
-					<option>2003</option>
-					<option>2004</option>
-					<option>2005</option>
-					<option>2006</option>
-					<option>2007</option>
-					<option>2008</option>
-					<option>2009</option>
-					<option>2010</option>
-					<option>2011</option>
-					<option>2012</option>
-					<option>2013</option>
-					<option>2014</option>
-					<option>2015</option>
-					<option>2016</option>
-					<option>2017</option>
-					<option>2018</option>
-				</select>
-			</span>
-			<div class="headRight">
-				<span id="setNextMonth">></span>
-				<span id="setNextYear">>></span>
-			</div>
-		</div>
-		<table id="table">
-			<thead>
-				<tr>
-					<th>日</th>
-					<th>一</th>
-					<th>二</th>
-					<th>三</th>
-					<th>四</th>
-					<th>五</th>
-					<th>六</th>
-				</tr>
-			</thead>
-			<tbody id="tbody">
-				
-			</tbody>
-		</table>
-	</div>
-
 
 <div id="windowDom">
 	<div id="shadow"></div>
@@ -144,12 +78,80 @@
 		</div>
 		<div class="qusetionFoot">
 			<div class ="setDeadline">
-				问卷截止日期:&nbsp;&nbsp;<input id="dataInput">
-				
+				问卷截止日期:&nbsp;&nbsp;<input id="dateInput">
+				<div class="calendarContainer" tabindex="1">
+
+					<div class="calendarPosition">
+						<div id="head">
+							<div class="headLeft">
+								<span id="setLastYear"><<</span>
+								<span id="setLastMonth"><</span>
+							</div>
+							<span id="headContent">
+								<select id="selectMonth">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>
+									<option>7</option>
+									<option>8</option>
+									<option>9</option>
+									<option>10</option>
+									<option>11</option>
+									<option>12</option>
+								</select>
+								<select id="selectYear">
+									<option>2000</option>
+									<option>2001</option>
+									<option>2002</option>
+									<option>2003</option>
+									<option>2004</option>
+									<option>2005</option>
+									<option>2006</option>
+									<option>2007</option>
+									<option>2008</option>
+									<option>2009</option>
+									<option>2010</option>
+									<option>2011</option>
+									<option>2012</option>
+									<option>2013</option>
+									<option>2014</option>
+									<option>2015</option>
+									<option>2016</option>
+									<option>2017</option>
+									<option>2018</option>
+								</select>
+							</span>
+							<div class="headRight">
+								<span id="setNextMonth">></span>
+								<span id="setNextYear">>></span>
+							</div>
+						</div>
+						<table id="table">
+							<thead>
+								<tr>
+									<th>日</th>
+									<th>一</th>
+									<th>二</th>
+									<th>三</th>
+									<th>四</th>
+									<th>五</th>
+									<th>六</th>
+								</tr>
+							</thead>
+							<tbody id="tbody">
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+
 			</div>
 			<div class="buttons">
-				<button>保存问卷</button>
-				<button>发布问卷</button>
+				<button id="storeQues">保存问卷</button>
+				<button id="pushQues">发布问卷</button>
 			</div>
 		</div>
 	</div>

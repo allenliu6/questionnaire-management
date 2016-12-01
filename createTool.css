@@ -1,337 +1,495 @@
-html,body{
-	background-color: #f1f1f1;
-	height: 100%;
-	position: relative;
-	margin:0;
+html,
+body
+{
+    position: relative;
+
+    height: 100%;
+    margin: 0;
+
+    background-color: #f1f1f1;
 }
-header{
-	background-color: #EE7419;
-	padding-left: 50px;
+header
+{
+    padding-left: 50px;
+
+    background-color: #ee7419;
 }
-header span{
-	display: inline-block;
-	color: #EE7419;
-	width: 20px;
-	height: 20px;
-	border-radius: 10px;
-	background-color: #fff;
-	text-align: center;
-	line-height: 20px;
+header span
+{
+    line-height: 20px;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+
+    text-align: center;
+
+    color: #ee7419;
+    border-radius: 10px;
+    background-color: #fff;
 }
-header h3{
-	display: inline-block;
-	color: #fff
+header h3
+{
+    display: inline-block;
+
+    color: #fff;
 }
-header a{
-	display: inline-block;
-	margin-left: 50px;
-	color: #fff;
-	text-decoration: none;
+header a
+{
+    display: inline-block;
+
+    margin-left: 50px;
+
+    text-decoration: none;
+
+    color: #fff;
 }
 /*header结束*/
 
 
-content{
-	width: 70%;
-	margin: 80px auto 200px auto;
-	min-height: 200px;
-	display: block;
-	background-color: #fff;
-	border-radius: 5px;
-	box-shadow: 0 3px 5px grey;
-	overflow: hidden;
+content
+{
+    display: block;
+    overflow: hidden;
+
+    width: 70%;
+    min-height: 200px;
+    margin: 80px auto 200px auto;
+
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 3px 5px grey;
 }
 
-#setTitle{
-	border:0;
-	display: block;
-	font-weight: bold;
-	font-size: 20px;
-	margin: 15px auto;
-	height: 40px;
-	line-height: 40px;
-	cursor: pointer;
+#setTitle
+{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 40px;
+
+    display: block;
+
+    height: 40px;
+    margin: 15px auto;
+
+    cursor: pointer;
+
+    border: 0;
 }
-#setTitle:hover{
-	background-color: #ffefd5;
+#setTitle:hover
+{
+    background-color: #ffefd5;
 }
 
-#setTitle,.questionBorder{
-	width: 90%;	
-	text-align: center;
+#setTitle,
+.questionBorder
+{
+    width: 90%;
+
+    text-align: center;
 }
 
-.questionBorder{
-	border-bottom: 2px rgba(98, 98, 98, 0.27) solid;
-	border-top: 2px rgba(98, 98, 98, 0.27) solid;
-	margin:0 auto;
+.questionBorder
+{
+    margin: 0 auto;
+
+    border-top: 2px rgba(98, 98, 98, .27) solid;
+    border-bottom: 2px rgba(98, 98, 98, .27) solid;
 }
 
 /*问卷生成内容区域*/
-#paperContent{
-	width: 90%;
-	margin:0 auto;
+#paperContent
+{
+    width: 90%;
+    margin: 0 auto;
 }
-#paperContent .questionDetail{
-	width: 98%;
-	padding: 15px 10px 0 5px;
-	margin-top:20px;
-}
-
-#paperContent .questionDetail:hover{
-	background-color: #ffefd5;
+#paperContent .questionDetail
+{
+    width: 98%;
+    margin-top: 20px;
+    padding: 15px 10px 0 5px;
 }
 
-#paperContent .questionDetail p{
-	display: inline-block;
-	width: 4%;
-	min-height: 100px;
-	text-align: right;
-	vertical-align: top;
-	margin:0 10px 0 0;
+#paperContent .questionDetail:hover
+{
+    background-color: #ffefd5;
 }
 
-#paperContent .questionDetail .detailRight{
-	width: 94%;
-	display: inline-block;
-	text-align: left;
+#paperContent .questionDetail p
+{
+    display: inline-block;
+
+    width: 4%;
+    min-height: 100px;
+    margin: 0 10px 0 0;
+
+    text-align: right;
+    vertical-align: top;
 }
 
-#paperContent .questionDetail .detailRight textarea{
-	width: 400px;
-	height: 150px;
+#paperContent .questionDetail .detailRight
+{
+    display: inline-block;
+
+    width: 94%;
+
+    text-align: left;
 }
 
-#paperContent .questionDetail .detailRight div{
-	min-height: 30px;
+#paperContent .questionDetail .detailRight textarea
+{
+    width: 400px;
+    height: 150px;
 }
 
-#paperContent .questionDetail .detailRight div:nth-child(1){
-	min-height: 40px;
+#paperContent .questionDetail .detailRight div
+{
+    min-height: 30px;
 }
 
-#paperContent .questionDetail .detailRight div:last-child{
-	text-align: right;
-	
+#paperContent .questionDetail .detailRight div:nth-child(1)
+{
+    min-height: 40px;
 }
 
-#paperContent .questionDetail .detailRight div:last-child a{
-	text-decoration: none;
-	color: #626262;
-	margin-left: 8px;
-	cursor: pointer;
+#paperContent .questionDetail .detailRight div:last-child
+{
+    text-align: right;
 }
-#paperContent .questionDetail .detailRight div:last-child a:hover{
-	color: #EE7419;
+
+#paperContent .questionDetail .detailRight div:last-child a
+{
+    margin-left: 8px;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    color: #626262;
+}
+#paperContent .questionDetail .detailRight div:last-child a:hover
+{
+    color: #ee7419;
 }
 
 
 /*生成工具*/
-#questionType{
-	height: 50px;
-	line-height: 50px;
-	display: none;
+#questionType
+{
+    line-height: 50px;
+
+    display: none;
+
+    height: 50px;
 }
 
-#questionType button{
-	width: 80px;
-	height: 25px;
-	margin-left: 20px;
-	border: 1px rgba(98, 98, 98, 0.37) solid;
-	border-radius: 2px;
-	display: inline-block;
-	background-color: #f1f1f1;
-	text-decoration: none;
-	cursor: pointer;
+#questionType button
+{
+    display: inline-block;
+
+    width: 80px;
+    height: 25px;
+    margin-left: 20px;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    border: 1px rgba(98, 98, 98, .37) solid;
+    border-radius: 2px;
+    background-color: #f1f1f1;
 }
 
-.questionBorder .questionInclude{
-	width: 90%;
-	margin:20px auto;
-	border:1px rgba(98, 98, 98, 0.27) solid;
+.questionBorder .questionInclude
+{
+    width: 90%;
+    margin: 20px auto;
+
+    border: 1px rgba(98, 98, 98, .27) solid;
 }
 
-.questionBorder .questionInclude .questionColor{
-	background-color: #f1f1f1;
+.questionBorder .questionInclude .questionColor
+{
+    background-color: #f1f1f1;
 }
-#addQuestion{
-	display: inline-block;
-	height: 60px;
-	line-height: 60px;
-	cursor: pointer;
+#addQuestion
+{
+    line-height: 60px;
+
+    display: inline-block;
+
+    height: 60px;
+
+    cursor: pointer;
 }
-#addQuestion span:nth-child(1){
-	font-size: 36px;
-	vertical-align: middle;
+#addQuestion span:nth-child(1)
+{
+    font-size: 36px;
+
+    vertical-align: middle;
 }
-.qusetionFoot{
-	height: 80px;
-	line-height: 80px;
-	text-align: center;
+.qusetionFoot
+{
+    line-height: 80px;
+
+    height: 80px;
+
+    text-align: center;
 }
-.qusetionFoot .setDeadline{
-	width: 50%;
-	float: left;
+.qusetionFoot .setDeadline
+{
+    float: left;
+
+    width: 50%;
 }
-.qusetionFoot .buttons{
-	width: 50%;
-	float: right;
+.qusetionFoot .buttons
+{
+    float: right;
+
+    width: 50%;
 }
 
-.qusetionFoot .buttons button{
-	width: 80px;
-	height: 30px;
-	border: solid 1px #f1f1f1;
-	background-color: #fff;
-	border-radius: 10px;
-	margin-right: 5px;
-	cursor: pointer;
-	font-size: 16px;
+.qusetionFoot .buttons button
+{
+    font-size: 16px;
+
+    width: 80px;
+    height: 30px;
+    margin-right: 5px;
+
+    cursor: pointer;
+
+    border: solid 1px #f1f1f1;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
-.qusetionFoot .buttons button:hover{
-	background-color: #EE7419;
+.qusetionFoot .buttons button:hover
+{
+    background-color: #ee7419;
 }
 /*content结束*/
 
 
-#windowDom{
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+#windowDom
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+    height: 100%;
 }
 
-#shadow {
-	background-color: rgba(0, 0, 0, 0.5);
-	width: 100%;
-	height: 100%;
-	position: absolute;
+#shadow
+{
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, .5);
 }
 
-#windowDom .popup{
-	width: 350px;
-	min-height: 150px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%,-50%);
-	background-color: #fff;
-	border-radius: 5px;
+#windowDom .popup
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 350px;
+    min-height: 150px;
+
+    transform: translate(-50%,-50%);
+
+    border-radius: 5px;
+    background-color: #fff;
 }
 
-#windowDom .popup .winHeader{
-	width: 100%;
-	min-height: 40px;
-	text-align: left;
-	background-color: #EFEFEF;
-	border-radius: 5px 5px 0 0;
+#windowDom .popup .winHeader
+{
+    width: 100%;
+    min-height: 40px;
+
+    text-align: left;
+
+    border-radius: 5px 5px 0 0;
+    background-color: #efefef;
 }
-#addTypeText{
-	display: inline-block;
-	margin: 15px 0 0 30px;
+#addTypeText
+{
+    display: inline-block;
+
+    margin: 15px 0 0 30px;
 }
 
-.winContent{
-	height: 50%;
-	width: 94%;
-	margin-left: 3%;
-	margin-right: 3%;
+.winContent
+{
+    width: 94%;
+    height: 50%;
+    margin-right: 3%;
+    margin-left: 3%;
+    
 }
-#windowBottom{
-	height: 25%;
-	width: 100%;
-	text-align: center;
+#windowBottom
+{
+    width: 100%;
+    height: 25%;
+    padding-bottom: 10px;
+
+    text-align: center;
 }
 
-#windowBottom button{
-	width: 80px;
-	height: 30px;
-	cursor: pointer;
-	background-color: #fff;
-	border-style: none;
-	border: 1px solid #EFEFEF;
+#windowBottom button
+{
+    width: 80px;
+    height: 30px;
+
+    cursor: pointer;
+
+    border: 1px solid #efefef;
+    border-style: none;
+    background-color: #fff;
 }
-#windowBottom button:nth-child(1){
-	background-color: #EE7419;
+#windowBottom button:nth-child(1)
+{
+    background-color: #ee7419;
 }
 
-#closeWindow{
-	cursor: pointer;
-	border: 0;
-	background-color: #EFEFEF;	
-	color: #626262;
-	font-size: 16px;
-	margin: 10px 20px 0 0;
-	display: inline-block;
-	float: right;
+#closeWindow
+{
+    font-size: 16px;
+
+    display: inline-block;
+    float: right;
+
+    margin: 10px 20px 0 0;
+
+    cursor: pointer;
+
+    color: #626262;
+    border: 0;
+    background-color: #efefef;
 }
-#closeWindow:hover{
-	color: red;
+#closeWindow:hover
+{
+    color: red;
 }
 
-#quesTitle,#quesContent{
-	width: 200px;
+#quesTitle,
+#quesContent
+{
+    width: 200px;
 }
-
 
 /*弹出窗口结束*/
-#calendarPosition{
-	position: absolute;
-	left: 0;
-	bottom:0;
-}
-/*text-align: center;*/
 
-#head{
-	width: 260px;
-	color: #fff;
-	background-color: #EE7419;
-	height: 25px;
-	margin:0 auto;
-	text-align: center;
-	display: none;
-}
-#head select{
-	height: 100%;
-	cursor: pointer;
-}
-#table{
-	display: table;
-	border: solid 1px #f1f1f1;
-	margin: 0 auto;
-	vertical-align: middle;
-	border-collapse:collapse;
-	display: none;
+
+/*日历table*/
+.calendarContainer
+{
+    height: 0;
 }
 
-#table td,th{
-	width: 35px;
-	height: 30px;
-	line-height: 30px;
-}
-#table td{
-	text-align: center;
-	cursor: pointer;
-}
-#table thead{
-	font-size: 20px;
-	background: #EE7419;
-	color: #fff;
-	margin-bottom: 10px;
+.calendarContainer .calendarPosition
+{
+    position: absolute;
+
+    margin-top: -25px;
+    margin-left: 8%;
 }
 
-.headLeft{
-	float: left;
+#head
+{
+    display: none;
+
+    width: 260px;
+    height: 25px;
+    margin: 0 auto;
+
+    text-align: center;
+
+    color: #fff;
+    background-color: #ee7419;
 }
-.headRight{
-	float: right;
+#head .headRight,
+#head .headLeft,
+#headContent
+{
+    line-height: 25px;
+
+    height: 25px;
 }
-#head div span{
-	cursor: pointer;
+#head select
+{
+    height: 100%;
+
+    cursor: pointer;
 }
-.numberGrey{
-	color: #f1f1f1;
+#table
+{
+    display: table;
+    display: none;
+
+    margin: 0 auto;
+
+    border-collapse: collapse;
+
+    vertical-align: middle;
+
+    border: solid 1px #f1f1f1;
+}
+
+#table td,
+th
+{
+    line-height: 30px;
+
+    width: 35px;
+    height: 30px;
+}
+#table td
+{
+    cursor: pointer;
+    text-align: center;
+}
+#table thead
+{
+    font-size: 20px;
+
+    margin-bottom: 10px;
+
+    color: #fff;
+    background: #ee7419;
+}
+#tbody
+{
+    background-color: #fff;
+}
+.headLeft
+{
+    float: left;
+
+    width: 20%;
+}
+#headContent
+{
+    float: left;
+
+    width: 60%;
+}
+.headRight
+{
+    float: right;
+
+    width: 20%;
+}
+#head div span
+{
+    cursor: pointer;
+}
+.numberGrey
+{
+    color: #f1f1f1;
 }

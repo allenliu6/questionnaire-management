@@ -35,27 +35,13 @@
 	    /*
 			support
 		*/
-
-		var data = [{
-			name:"问卷1",
-			deadline:"2016-11-30 11:11:11",
-			content:[{title:"试验", type:1, option:["正确","错误"]}]
-		},{
-			name:"问卷2",
-			deadline:"2016-11-30 11:11:11",
-			content:[{title:"试验", type:1, option:["正确","错误"]}]
-		},{
-			name:"问卷3",
-			deadline:"2016-11-30 11:11:11",
-			content:[{title:"试验", type:1, option:["正确","错误"]}]
-		},{
-			name:"问卷4",
-			deadline:"2016-11-30 11:11:11",
-			content:[{title:"试验", type:1, option:["正确","错误"]}]
-		},{
-			name:"问卷5",
-			deadline:"2016-11-30 11:11:11",
-			content:[{title:"试验", type:1, option:["正确","错误"]}]
-		}];
+	
+		if(!localStorage.qnData){
+			localStorage.qnData = JSON.stringify([{
+				name:"问卷1",
+				deadline:"2016-11-30",
+				content:[{title:"试验", type:1, option:["正确","错误"]}]
+			}]);
+		}
 
 
