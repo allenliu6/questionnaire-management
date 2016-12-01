@@ -1,0 +1,337 @@
+html,body{
+	background-color: #f1f1f1;
+	height: 100%;
+	position: relative;
+	margin:0;
+}
+header{
+	background-color: #EE7419;
+	padding-left: 50px;
+}
+header span{
+	display: inline-block;
+	color: #EE7419;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: #fff;
+	text-align: center;
+	line-height: 20px;
+}
+header h3{
+	display: inline-block;
+	color: #fff
+}
+header a{
+	display: inline-block;
+	margin-left: 50px;
+	color: #fff;
+	text-decoration: none;
+}
+/*header结束*/
+
+
+content{
+	width: 70%;
+	margin: 80px auto 200px auto;
+	min-height: 200px;
+	display: block;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 3px 5px grey;
+	overflow: hidden;
+}
+
+#setTitle{
+	border:0;
+	display: block;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 15px auto;
+	height: 40px;
+	line-height: 40px;
+	cursor: pointer;
+}
+#setTitle:hover{
+	background-color: #ffefd5;
+}
+
+#setTitle,.questionBorder{
+	width: 90%;	
+	text-align: center;
+}
+
+.questionBorder{
+	border-bottom: 2px rgba(98, 98, 98, 0.27) solid;
+	border-top: 2px rgba(98, 98, 98, 0.27) solid;
+	margin:0 auto;
+}
+
+/*问卷生成内容区域*/
+#paperContent{
+	width: 90%;
+	margin:0 auto;
+}
+#paperContent .questionDetail{
+	width: 98%;
+	padding: 15px 10px 0 5px;
+	margin-top:20px;
+}
+
+#paperContent .questionDetail:hover{
+	background-color: #ffefd5;
+}
+
+#paperContent .questionDetail p{
+	display: inline-block;
+	width: 4%;
+	min-height: 100px;
+	text-align: right;
+	vertical-align: top;
+	margin:0 10px 0 0;
+}
+
+#paperContent .questionDetail .detailRight{
+	width: 94%;
+	display: inline-block;
+	text-align: left;
+}
+
+#paperContent .questionDetail .detailRight textarea{
+	width: 400px;
+	height: 150px;
+}
+
+#paperContent .questionDetail .detailRight div{
+	min-height: 30px;
+}
+
+#paperContent .questionDetail .detailRight div:nth-child(1){
+	min-height: 40px;
+}
+
+#paperContent .questionDetail .detailRight div:last-child{
+	text-align: right;
+	
+}
+
+#paperContent .questionDetail .detailRight div:last-child a{
+	text-decoration: none;
+	color: #626262;
+	margin-left: 8px;
+	cursor: pointer;
+}
+#paperContent .questionDetail .detailRight div:last-child a:hover{
+	color: #EE7419;
+}
+
+
+/*生成工具*/
+#questionType{
+	height: 50px;
+	line-height: 50px;
+	display: none;
+}
+
+#questionType button{
+	width: 80px;
+	height: 25px;
+	margin-left: 20px;
+	border: 1px rgba(98, 98, 98, 0.37) solid;
+	border-radius: 2px;
+	display: inline-block;
+	background-color: #f1f1f1;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.questionBorder .questionInclude{
+	width: 90%;
+	margin:20px auto;
+	border:1px rgba(98, 98, 98, 0.27) solid;
+}
+
+.questionBorder .questionInclude .questionColor{
+	background-color: #f1f1f1;
+}
+#addQuestion{
+	display: inline-block;
+	height: 60px;
+	line-height: 60px;
+	cursor: pointer;
+}
+#addQuestion span:nth-child(1){
+	font-size: 36px;
+	vertical-align: middle;
+}
+.qusetionFoot{
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+}
+.qusetionFoot .setDeadline{
+	width: 50%;
+	float: left;
+}
+.qusetionFoot .buttons{
+	width: 50%;
+	float: right;
+}
+
+.qusetionFoot .buttons button{
+	width: 80px;
+	height: 30px;
+	border: solid 1px #f1f1f1;
+	background-color: #fff;
+	border-radius: 10px;
+	margin-right: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.qusetionFoot .buttons button:hover{
+	background-color: #EE7419;
+}
+/*content结束*/
+
+
+#windowDom{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#shadow {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+#windowDom .popup{
+	width: 350px;
+	min-height: 150px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+#windowDom .popup .winHeader{
+	width: 100%;
+	min-height: 40px;
+	text-align: left;
+	background-color: #EFEFEF;
+	border-radius: 5px 5px 0 0;
+}
+#addTypeText{
+	display: inline-block;
+	margin: 15px 0 0 30px;
+}
+
+.winContent{
+	height: 50%;
+	width: 94%;
+	margin-left: 3%;
+	margin-right: 3%;
+}
+#windowBottom{
+	height: 25%;
+	width: 100%;
+	text-align: center;
+}
+
+#windowBottom button{
+	width: 80px;
+	height: 30px;
+	cursor: pointer;
+	background-color: #fff;
+	border-style: none;
+	border: 1px solid #EFEFEF;
+}
+#windowBottom button:nth-child(1){
+	background-color: #EE7419;
+}
+
+#closeWindow{
+	cursor: pointer;
+	border: 0;
+	background-color: #EFEFEF;	
+	color: #626262;
+	font-size: 16px;
+	margin: 10px 20px 0 0;
+	display: inline-block;
+	float: right;
+}
+#closeWindow:hover{
+	color: red;
+}
+
+#quesTitle,#quesContent{
+	width: 200px;
+}
+
+
+/*弹出窗口结束*/
+#calendarPosition{
+	position: absolute;
+	left: 0;
+	bottom:0;
+}
+/*text-align: center;*/
+
+#head{
+	width: 260px;
+	color: #fff;
+	background-color: #EE7419;
+	height: 25px;
+	margin:0 auto;
+	text-align: center;
+	display: none;
+}
+#head select{
+	height: 100%;
+	cursor: pointer;
+}
+#table{
+	display: table;
+	border: solid 1px #f1f1f1;
+	margin: 0 auto;
+	vertical-align: middle;
+	border-collapse:collapse;
+	display: none;
+}
+
+#table td,th{
+	width: 35px;
+	height: 30px;
+	line-height: 30px;
+}
+#table td{
+	text-align: center;
+	cursor: pointer;
+}
+#table thead{
+	font-size: 20px;
+	background: #EE7419;
+	color: #fff;
+	margin-bottom: 10px;
+}
+
+.headLeft{
+	float: left;
+}
+.headRight{
+	float: right;
+}
+#head div span{
+	cursor: pointer;
+}
+.numberGrey{
+	color: #f1f1f1;
+}
