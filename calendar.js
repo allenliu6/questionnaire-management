@@ -54,8 +54,30 @@ var newCalendar = (function(w, undefined) {
 			}
 		},
 
+		//设置日历的显示与消失 基于tableclick变量
+		setTableDisplay() {
+			var head = getId("head"),
+				table = getId("table"),
+				self = this;
 
-		calculate(time = Date()) { //传入一个详细时间进行一系列初始化表格数据的算法 进而传给render函数进行渲染
+			if (self.tableClick) {
+				head.style.display = "block";
+				table.style.display = "table";
+				self.tableClick = false;
+			} else {
+				head.style.display = "none";
+				table.style.display = "none";
+				self.tableClick = true;
+			}
+
+		},
+		/*
+			support
+		 */
+
+
+		//默认基于当前时间进行数据处理
+		calculate(time = Date()) { //传入一个详细时间进行一系列初始化表格数据的算法 进而传给render函数进行渲染  
 			var newTime = this.getTime(time),
 				calendar = {
 					data: [
@@ -92,6 +114,8 @@ var newCalendar = (function(w, undefined) {
 			this.selectMonth.getElementsByTagName("option")[calendar.nowTime.getMonth()].selected = true;
 
 		},
+
+		//dom渲染
 		render() { //利用calculate函数生成的calendar数组 dom插入table的tbody
 			var tbodyArr = [],
 				calendar = this.calendar;
@@ -106,27 +130,13 @@ var newCalendar = (function(w, undefined) {
 			this.addColor();
 		},
 
-		setTableDisplay() {
-			var head = getId("head"),
-				table = getId("table"),
-				self = this;
-
-			if (self.tableClick) {
-				head.style.display = "block";
-				table.style.display = "table";
-				self.tableClick = false;
-			} else {
-				head.style.display = "none";
-				table.style.display = "none";
-				self.tableClick = true;
-			}
-
-		},
+		//为输入框绑定事件 效果为点击输入框日历出现 点击日历或非输入框的地方日历消失
+		//点击输入框后 显示日历并触发聚焦事件 将焦点转移到日历上 失去焦点或被点击后日历消失
 		inputInit() {
 			var self = this;
 
 			this.dateInput.onclick = function() {
-				if(self.tableClick){
+				if (self.tableClick) {
 					self.setTableDisplay();
 				}
 			}; //绑定事件  点击输入框table的display变为相反状态
@@ -139,7 +149,7 @@ var newCalendar = (function(w, undefined) {
 						self.setTableDisplay();
 					}
 				};
-				this.onfocus = function(){
+				this.onfocus = function() {
 					this.blur();
 					this.nextElementSibling.focus();
 				}
@@ -147,7 +157,7 @@ var newCalendar = (function(w, undefined) {
 
 		},
 
-		dateClick() {
+		dateClick() { //为日历中的每个日期绑定点击事件
 			var tds = this.tbody.getElementsByTagName("td"),
 				self = this;
 
@@ -157,8 +167,12 @@ var newCalendar = (function(w, undefined) {
 			tds = null;
 			for (var i = 0; validTds[i]; i++) {
 				validTds[i].onclick = function() {
-					self.dateInput.value = self.calendar.nowTime.getFullYear() + "-" + (self.calendar.nowTime.getMonth() + 1) + "-" + this.innerHTML;
-
+					self.dateInput.value = self.calendar.nowTime.getMonth() + 1 + "/" + this.innerHTML + "/" + self.calendar.nowTime.getFullYear() ;
+					console.log(new Date(self.dateInput.value), new Date());
+					if( !judgeDate(self.dateInput.value) ){
+						alert(`请选择未来的时间`);
+						self.dateInput.value = "";
+					}
 					//点击消失
 					self.setTableDisplay();
 				}
@@ -223,6 +237,7 @@ var newCalendar = (function(w, undefined) {
 			nextYear = null;
 			nextMonth = null;
 		},
+
 		selecteChange() { //对日期选择下拉框进行改变监控 不会监控js对下拉框值进行的改变
 			var self = this;
 

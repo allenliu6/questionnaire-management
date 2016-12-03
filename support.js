@@ -22,6 +22,17 @@
 	        }
 	    };
 
+	    //传入符合一定格式的日期 未来日期返回true 过去日期返回false
+	    var judgeDate = function( date ){
+			var nowTime = new Date(),
+				setDate = new Date(date);
+
+			if(setDate.getTime() > nowTime.getTime()){
+				return true;
+			}
+			return false;
+		};
+
 	    /*//dom在之后插入
 	    function insertAfter(newEl, targetEl){
 	        var parentEl = targetEl.parentNode;

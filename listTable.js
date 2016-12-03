@@ -24,10 +24,12 @@ var newTable = (function(w, undefined) {
 		//渲染tbody内容
 		render() {
 			var data = this.data;
-			tableBody.innerHTML = "";
+			tableBody.innerHTML = "",
+			statusClass = "";
 			for (let i = 0; data[i]; i++) {
-				data[i].status = data[i].deadline > parseInt(Date(), 10) ? "发布中" : "已结束"; //通过日期比较判断状态
-				tableBody.innerHTML += `<tr><td><input type="checkbox" name=""></td><td>${data[i].name}</td><td>${data[i].deadline}</td><td>${data[i].status}</td><td><button class="editBut">编辑</button><button class="deleteBut">删除</button><button>查看数据</button></td>`;
+				data[i].status = judgeDate( data[i].deadline ) ? "发布中" : "已结束"; //通过日期比较判断状态
+				statusClass = data[i].status === "发布中" ? "greenColor" : "";
+				tableBody.innerHTML += `<tr><td><input type="checkbox" name=""></td><td>${data[i].name}</td><td>${data[i].deadline}</td><td class=${statusClass}>${data[i].status}</td><td><button class="editBut">编辑</button><button class="deleteBut">删除</button><button>查看数据</button></td>`;
 			}
 		},
 
@@ -65,6 +67,7 @@ var newTable = (function(w, undefined) {
 					};
 				})(i);
 			}
+			deleteBut = null;
 
 			deleteMore.onclick = function() {
 				var detail = "";
@@ -97,18 +100,18 @@ var newTable = (function(w, undefined) {
 
 		},
 
-		confirmTrue: {
+		confirmTrue: {//点击弹出窗口的确认后进行的函数 
 			delete() {
 				var deleteQueue = this.deleteQueue;
 				console.log(deleteQueue);
 				for (var i = 0, length = deleteQueue.length; i < length; i++) {
 					this.data.splice(deleteQueue[i] - i, 1);
-					//彻底删除?  关于addEvent函数删除按钮 单选框的引用  全部删除后addEvent被回收吗？
+					//彻底删除?  关于addEvent函数删除按钮 单选框的引用  全部删除后addEvent被回收吗？ 应该不会
 				}
 				this.init();
 			},
 
-			edit() {
+			edit() {//把要编辑的数据提取出来赋值给editPaper  跳转页面
 				localStorage.editPaper = JSON.stringify(this.data.splice( this.editQueue, 1)[0]);
 				localStorage.qnData = JSON.stringify(this.data);
 				location.href = "createTool.html";

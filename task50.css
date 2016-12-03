@@ -181,3 +181,7 @@ content table tr th:nth-child(4){
 content table tr th:nth-child(5){
 	width: 40%;
 }
+
+.greenColor{
+	color: green;
+}

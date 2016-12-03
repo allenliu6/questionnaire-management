@@ -21,8 +21,8 @@ var createTool = function(w, undefined) {
 			deadline: "",
 			content: []
 		},
-		init() { //函数初始化
-			if ( localStorage.editPaper ) {
+		init() { //函数初始化  检查是否是编辑才跳转 如果是则对data进行初始化再进行渲染页面绑定事件
+			if (localStorage.editPaper) {
 				console.log(this.data)
 				this.data = JSON.parse(localStorage.editPaper)
 				this.renderQuestion();
@@ -80,38 +80,6 @@ var createTool = function(w, undefined) {
 			questionTypes = null;
 		},
 
-		inputHandle(title, option) { //创建数据处理
-
-			var optionArr = option ? option.split(",") : [],
-				number = this.data.content.length;
-			this.data.content[number] = {};
-			var newQuestion = this.data.content[number];
-			newQuestion.title = title;
-			newQuestion.type = this.lastType;
-			newQuestion.option = optionArr;
-			console.log(this.data.content);
-
-			this.renderQuestion();
-
-		},
-
-		getInputType(type) { //获取问题类型
-			var inputType = "";
-
-			switch (type) {
-				case 0:
-					inputType = "radio";
-					break;
-				case 1:
-					inputType = "checkbox";
-					break;
-				case 2:
-					break;
-			};
-
-			return inputType;
-		},
-
 		renderQuestion() { //重新刷新页面
 			var content = this.data.content,
 				optionHTML = "",
@@ -150,7 +118,7 @@ var createTool = function(w, undefined) {
 
 		},
 
-		addDetailEvents() { //给当前进行四种操作的元素显式绑定函数
+		addDetailEvents() { //给当前进行四种操作的问题元素显式绑定函数
 			var moveUp = this.paperContent.getElementsByClassName("moveUp"),
 				moveDown = this.paperContent.getElementsByClassName("moveDown"),
 				copy = this.paperContent.getElementsByClassName("copy"),
@@ -195,6 +163,42 @@ var createTool = function(w, undefined) {
 			moveUp = null;
 		},
 
+
+		/*
+			支持事件绑定的函数
+		 */
+		inputHandle(title, option) { //创建数据处理  弹出窗口的回调
+
+			var optionArr = option ? option.split("，") : [],
+				number = this.data.content.length;
+			this.data.content[number] = {};
+			var newQuestion = this.data.content[number];
+			newQuestion.title = title;
+			newQuestion.type = this.lastType;
+			newQuestion.option = optionArr;
+			console.log(this.data.content);
+
+			this.renderQuestion();
+
+		},
+
+		getInputType(type) { //获取问题类型
+			var inputType = "";
+
+			switch (type) {
+				case 0:
+					inputType = "radio";
+					break;
+				case 1:
+					inputType = "checkbox";
+					break;
+				case 2:
+					break;
+			};
+
+			return inputType;
+		},
+
 		fourOperate: { //问卷问题的四种操作 上移下移复用删除
 			moveUp(num) {
 				var changeData = this.data.content[num];
@@ -218,7 +222,7 @@ var createTool = function(w, undefined) {
 			}
 		},
 
-		storeQues() {
+		storeQues() { //先检查日期 在检查问卷名称 检查问卷题目的数目 检查每个问题的问题描述和选项是否为空 若全部通过验证则弹出窗口返回true
 			var dateInput = getId("dateInput"),
 				setTitle = getId("setTitle"),
 				data = this.data;
@@ -228,28 +232,36 @@ var createTool = function(w, undefined) {
 			console.log(Date.parse(data.deadline));
 			//检查数据是否合格
 			if (data.deadline) { //?日期验证
+
 				if (data.name) {
+
 					if (data.content.length) {
 						for (var i = 0, content = data.content; content[i]; i++) {
 							if (!content[i].title || !content[i].option) {
 								alert(`请不要在第${i+1}个问题中少填写`);
 							}
 						}
+
+						alert("操作成功");
+						localStorage.editPaper = JSON.stringify(data);
 						return true;
+						
 					} else {
 						alert(`请添加问卷题目`);
 					}
+
 				} else {
 					alert("请输入正确问卷名称");
 				}
+
 			} else {
 				alert("请输入正确的日期");
 			}
 
-			console.log(this.data);
+
 		},
 
-		pushQues() {
+		pushQues() { //给localStorage的qnData赋值 移除编辑项即localStorage.editPaper 跳转页面
 			console.log(JSON.parse(localStorage.qnData));
 			var data = JSON.parse(localStorage.qnData);
 			data.push(this.data);
