@@ -1,187 +1,240 @@
-html,body{
-	background-color: #f1f1f1;
-	height: 100%;
-	position: relative;
-	margin:0;
-}
-header{
-	background-color: #EE7419;
-	padding-left: 50px;
-}
-header span{
-	display: inline-block;
-	color: #EE7419;
-	width: 20px;
-	height: 20px;
-	border-radius: 10px;
-	background-color: #fff;
-	text-align: center;
-	line-height: 20px;
-}
-header h3{
-	display: inline-block;
-	color: #fff
-}
-header strong{
-	display: inline-block;
-	margin-left: 50px;
-	color: #fff;
-}
+html,
+body
+{
+    position: relative;
 
-#windowDom{
-	display: none;
-}
+    height: 100%;
+    margin: 0;
 
-#shadow {
-	background-color: rgba(0, 0, 0, 0.5);
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
+    background-color: #f1f1f1;
 }
+header
+{
+    padding-left: 50px;
 
-#windowDom .popup{
-	width: 350px;
-	height: 150px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%,-50%);
-	background-color: #fff;
-	border-radius: 5px;
+    background-color: #ee7419;
 }
+header span
+{
+    line-height: 20px;
 
-#windowDom .popup div:nth-child(1){
-	width: 100%;
-	height: 25%;
-	text-align: left;
-	background-color: #EFEFEF;
-	border-radius: 5px 5px 0 0;
-}
-#windowDom .popup div:nth-child(1) span{
-	font-weight: bold;
-	display: inline-block;
-	float: left;
-}
-.winContent{
-	height: 50%;
-	width: 100%;
-}
-#windowBottom{
-	height: 25%;
-	width: 100%;
-	text-align: center;
-}
+    display: inline-block;
 
-#windowBottom button{
-	width: 80px;
-	height: 30px;
-	cursor: pointer;
-	background-color: #fff;
-	border-style: none;
-	border: 1px solid #EFEFEF;
-}
-#windowBottom button:nth-child(1){
-	background-color: #EE7419;
-}
+    width: 20px;
+    height: 20px;
 
-#closeWindow{
-	cursor: pointer;
-	border: 0;
-	background-color: #EFEFEF;	
-	color: #626262;
-	font-size: 16px;
-	float: right;
-	margin: 10px 20px 0 0;
+    text-align: center;
+
+    color: #ee7419;
+    border-radius: 10px;
+    background-color: #fff;
 }
-#closeWindow:hover{
-	color: red;
+header h3
+{
+    display: inline-block;
+
+    color: #fff;
+}
+header strong
+{
+    display: inline-block;
+
+    margin-left: 50px;
+
+    color: #fff;
 }
 
 
-content{
-	width: 100%;
+#shadow
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    background-color: rgba(0, 0, 0, .8);
 }
-content table{
-	border-collapse: collapse; 
-	width: 75%;
-	margin: 50px auto;
-}
-#tableBody{
-	background-color: #fff;
-	text-align: center;
-}
-content table tfoot{
-	width: 100%;
-	background-color: #fff;
+#window
+{
+    position: fixed;
+
+    width: 300px;
+    height: 200px;
+
+    text-align: center;
+
+    border: solid 1px #f1f1f1;
+    background-color: #fff;
 }
 
-content table tr{
-	height: 50px;
-	line-height: 50px;
-	border-bottom: solid 1px #efefef;
+#header
+{
+    width: 100%;
+    height: 15%;
+    padding-top: 5px;
+
+    text-align: center;
 }
-content table button,#createQuestion{
-	width: 80px;
-	height: 30px;
-	border: solid 1px #f1f1f1;
-	background-color: #fff;
-	border-radius: 10px;
-	margin-right: 5px;
-	cursor: pointer;
-	font-size: 16px;
+.content
+{
+    display: -webkit-flex;
+    display:         flex;
+
+    width: 100%;
+    height: 60%;
+
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+.bottom
+{
+    width: 100%;
+    height: 25%;
+}
+.content input
+{
+    width: 200px;
+    height: 30px;
+}
+.bottom button
+{
+    width: 80px;
+    height: 30px;
+}
+#closeWindow,
+.bottom button
+{
+    cursor: pointer;
+}
+#closeWindow
+{
+    float: right;
+}
+#closeWindow:hover
+{
+    color: #fff;
+    background-color: grey;
 }
 
-#createQuestion{
-	width: 90px;
-	line-height: 30px;
-	margin-left: 20px;
-	background-color: #EE7419;
-	border: 0;
-	border-radius: 4px;
-	display: inline-block;
-	color: #fff;
-	text-decoration: none;
+
+content
+{
+    width: 100%;
+}
+content table
+{
+    width: 75%;
+    margin: 50px auto;
+
+    border-collapse: collapse;
+}
+#tableBody
+{
+    text-align: center;
+
+    background-color: #fff;
+}
+content table tfoot
+{
+    width: 100%;
+
+    background-color: #fff;
 }
 
-#tableBody tr td:nth-child(2){
-	text-align: left;
+content table tr
+{
+    line-height: 50px;
+
+    height: 50px;
+
+    border-bottom: solid 1px #efefef;
+}
+content table button,
+#createQuestion
+{
+    font-size: 16px;
+
+    width: 80px;
+    height: 30px;
+    margin-right: 5px;
+
+    cursor: pointer;
+
+    border: solid 1px #f1f1f1;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
-#tableBody tr:hover{
-	background-color: #ffefd5;
+#createQuestion
+{
+    line-height: 30px;
+
+    display: inline-block;
+
+    width: 90px;
+    margin-left: 20px;
+
+    text-decoration: none;
+
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    background-color: #ee7419;
 }
 
-#tableBody button:hover,#deleteMore:hover{
-	background-color: #EE7419;
+#tableBody tr td:nth-child(2)
+{
+    text-align: left;
 }
 
-content table tfoot tr td:nth-child(1){
-	text-align:center;
-}
-content table tfoot button{
-	margin-left: 30px;
+#tableBody tr:hover
+{
+    background-color: #ffefd5;
 }
 
-content table tr th:nth-child(1){
-	width: 5%;
+#tableBody button:hover,
+#deleteMore:hover
+{
+    background-color: #ee7419;
 }
 
-content table tr th:nth-child(2){
-	width: 25%;
+content table tfoot tr td:nth-child(1)
+{
+    text-align: center;
+}
+content table tfoot button
+{
+    margin-left: 30px;
 }
 
-content table tr th:nth-child(3){
-	width: 25%;
+content table tr th:nth-child(1)
+{
+    width: 5%;
 }
 
-content table tr th:nth-child(4){
-	width: 10%;
-}
-content table tr th:nth-child(5){
-	width: 40%;
+content table tr th:nth-child(2)
+{
+    width: 25%;
 }
 
-.greenColor{
-	color: green;
+content table tr th:nth-child(3)
+{
+    width: 25%;
+}
+
+content table tr th:nth-child(4)
+{
+    width: 10%;
+}
+content table tr th:nth-child(5)
+{
+    width: 40%;
+}
+
+.greenColor
+{
+    color: green;
 }

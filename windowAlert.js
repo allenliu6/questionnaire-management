@@ -1,93 +1,156 @@
-/*	问卷格式JSON{
-		name:"问卷1",
-		deadline:"2016-04-30 11:11:11",
-		content:[{title:"试验",type:1 单选 2 多选 3 文本 -->,option:[]},]
-		
-	}*/
+const alertObj = function(w) {
 
+	const alertModule = {
 
+		//对象消失
+		disappear(dis) {
+			this.win.style.display = dis;
+			this.shadow.style.display = dis;
+		},
 
-//弹出窗口主类
-var alertObj = (function() {
-
-	var winAlert = {
-		windowDom: getId("windowDom"), //主domdiv
-		shadow: getId("shadow"), //阴影
-		closeWindow: getId("closeWindow"), //关闭按钮
-		windowContent: getId("windowContent"), //窗口主体
-		buttons: getId("windowBottom").getElementsByTagName("button"), //返回按钮
-		windowTitle: getId("addTypeText") || null,
-		quesContent: getId("quesContent") || null,
-		iscreated: false, //当前页面窗口是否已经创建
-
-		//添加事件包装函数
-		addEvents(obj, event) {
-			var _this = this;
+		//show函数事件绑定
+		addEvents(obj, event, dis) {
+			const self = this;
 			obj.addEventListener(event, function() {
-				_this.windowDom.style.display = "none";
+				self.disappear(dis)
 			});
 		},
 
-		//listTable专属函数
-		context(content) {
-			this.windowContent.innerHTML = content;
+		//处理传参
+		createContent(obj) {
+			let num = 0,
+				str = '';
+
+			for (let i of obj.content.keys()) {
+				while (num < obj.contentNum[i]) {
+					switch (obj.contentType[i]) {
+						case 0:
+							{
+								str += obj.content[i] + '</br></br>';
+								break;
+							}
+						case 1:
+							{
+								str += `<label for="username">${obj.content[i]}</label>&nbsp;
+							<input type="text" name="username" placeholder="请输入文本"><br>`;
+								break;
+							}
+						case 2:
+							{
+								str += `<label for="password">${obj.content[i]}</label>&nbsp;
+							<input type="password" name="password" placeholder="请输入数字"><br>`;
+								break;
+							}
+					}
+
+					num++
+				}
+				num = 0;
+			}
+
+			return str;
 		},
 
-		//createTool专属函数
-		input(title) {
-			this.windowTitle.innerHTML = "添加" + title;
-			if (title === "文本") {
-				this.quesContent.parentNode.style.display = "none";
+		createBottom(obj) {
+			let str = '';
+			for (let i of obj) {
+				str += `<button>${i}</button>`;
 			}
+			return str;
 		},
 
-		//初始化 
-		windowInit(strategy, content, self, but) { //传递第三个参数为引用window的主体对象
-			_this = this;
+		//窗口单例
+		createNew() {
 
-			this.windowDom.style.display = "block";
-			this[strategy](content);//每次点击弹出窗口个性化
+			this.shadow = document.createElement('div');
+			this.win = document.createElement("div");
 
+			this.shadow.id = 'shadow';
+			this.win.id = 'window';
 
-			if (!this.iscreated) {
-				this.addEvents(this.buttons[1], "click");
-				this.addEvents(shadow, "click");
-				this.addEvents(closeWindow, "click");
-				this.addEvents(this.buttons[0], "click");
-				this.iscreated = true;
+			document.body.appendChild(this.shadow);
+			document.body.appendChild(this.win);
 
-				this.buttons[0].addEventListener("click", function() {
-					_this.eventStrategy[strategy].call(_this, self, but);//事件策略
-				});
-				/*this.buttons[0].addEventListener( "click", function(){
-
-					var quesTitle = getId("quesTitle");
-					
-					self.inputHandle( quesTitle.value, _this.quesContent.value );
-					_this.quesContent.value = "";
-					quesTitle.value = "";
-
-				});*///策略化
-			}
+			this.isCreate = true;
 		},
 
-		eventStrategy: {
-			context(_this, butType) { //调用组件的对象
-				_this.confirmTrue[butType].call( _this );
-			},
-			input(_this) { //_this调用组件的对象 this是组件对象
-				this.quesContent.parentNode.style.display = "block"; //优化点 保证每次打开都会恢复上一次可能会被createTool函数造成的选项输入框消失情况
 
-				var quesTitle = getId("quesTitle");
 
-				_this.inputHandle(quesTitle.value, this.quesContent.value);
-				this.quesContent.value = "";
-				quesTitle.value = "";
+		init({
+			obj,
+			headerText = '提示',
+			content,
+			contentNum = [1, 1, 1, 1, 1],
+			contentType = [1, 1, 1, 1, 1],
+			bottom = ['确定', '取消'],
+			bottomFunc,
+		}) {
+
+			/*数据绑定  默认是登录弹出窗口  header只能存在文字和一个默认存在的关闭按钮  content可以有输入框或者文字  bottom可以设置多个按钮 
+			//
+			headerText: '', 默认为提示
+			content:['','',] 名称或文字
+			contentNum:[2,1]//对应content数量，默认为1
+			contentType: [0，1], 0字符串 1文本输入框 2数字输入框
+			bottom:['',''],
+			buttonFunc :[]  按钮的回调函数
+			*/
+
+			//只创建一次
+			if (!this.isCreate) {
+				this.createNew();
 			}
+			//默认参数
+			for (let i in bottom) {
+				if (!bottomFunc[i]) {
+					let self = this;
+					bottomFunc[i] = function() {
+						self.disappear('none')
+					};
+				}
+			}
+			const _this = this;
+
+			this.win.innerHTML = `
+			<div id="header"><span>${headerText}</span><input type="button" name="" id="closeWindow" value="X"></div><div class="content"><div>${this.createContent({content,contentNum,contentType})}</div></div><div class="bottom">${this.createBottom(bottom)}</div>`;
+
+
+			this.closeWindow = getId("closeWindow");
+
+
+			//window位置初始化
+			this.win.style.left = parseInt(document.body.clientWidth, 10) / 2 - parseInt(getStyle(this.win, "width")) / 2 + "px";
+			this.win.style.top = parseInt(document.body.clientHeight, 10) / 2 - parseInt(getStyle(this.win, "height")) / 2 + "px";
+			this.shadow.style.height = document.documentElement.scrollHeight + 'px';
+
+
+			this.win.style.display = 'block';
+			this.shadow.style.display = 'block';
+
+
+			//添加改变window和shadow事件
+			this.addEvents(this.shadow, "click", "none");
+			this.addEvents(this.closeWindow, "click", "none");
+
+			//添加按钮事件
+			const btns = this.win.getElementsByTagName('button'),
+					inputs = this.win.getElementsByTagName('input');
+
+			for (let i in bottom) {
+
+				btns[i].onclick = (function() {
+					return function() {
+						bottomFunc[i].call(obj, contentType[1] && inputs[1].value , contentType[2] && inputs[2].value);
+						_this.disappear('none');
+					}
+				})(i);
+			}
+
 		},
 	};
 
-	var alertObj = Object.create(winAlert);
-	return alertObj;
+	const alert = Object.create(alertModule);
 
-})(window);
+	return alert;
+
+}(window);

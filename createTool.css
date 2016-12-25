@@ -270,118 +270,78 @@ content
 /*content结束*/
 
 
-#windowDom
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    display: none;
-
-    width: 100%;
-    height: 100%;
-}
-
 #shadow
 {
     position: absolute;
+    top: 0;
+    left: 0;
 
     width: 100%;
-    height: 100%;
 
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .8);
 }
-
-#windowDom .popup
+#window
 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: fixed;
 
-    width: 350px;
-    min-height: 150px;
+    width: 300px;
+    height: 200px;
 
-    transform: translate(-50%,-50%);
+    text-align: center;
 
-    border-radius: 5px;
+    border: solid 1px #f1f1f1;
     background-color: #fff;
 }
 
-#windowDom .popup .winHeader
+#header
 {
     width: 100%;
-    min-height: 30px;
-
-    text-align: left;
-
-    border-radius: 5px 5px 0 0;
-    background-color: #efefef;
-}
-#addTypeText
-{
-    display: inline-block;
-
-    margin: 10px 0 0 30px;
-}
-
-.winContent
-{
-    width: 94%;
-    height: 50%;
-    margin-right: 3%;
-    margin-left: 3%;
-}
-#windowBottom
-{
-    width: 100%;
-    height: 25%;
-    padding-bottom: 10px;
+    height: 15%;
+    padding-top: 5px;
 
     text-align: center;
 }
-
-#windowBottom button
+.content
 {
-    width: 70px;
-    height: 25px;
-    font-size: 14px;
+    display: -webkit-flex;
+    display:         flex;
 
+    width: 100%;
+    height: 60%;
+
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+.bottom
+{
+    width: 100%;
+    height: 25%;
+}
+.content input
+{
+    width: 200px;
+    height: 30px;
+}
+.bottom button
+{
+    width: 80px;
+    height: 30px;
+}
+#closeWindow,
+.bottom button
+{
     cursor: pointer;
-
-   
-    border-style: none;
-    border: 1px solid #efefef;
-    background-color: #fff;
 }
-#windowBottom button:nth-child(1)
-{	margin-right: 20px;
-    background-color: #ffefd5;
-}
-
 #closeWindow
 {
-    font-size: 16px;
-
-    display: inline-block;
     float: right;
-
-    margin: 7px 20px 0 0;
-
-    cursor: pointer;
-
-    color: #626262;
-    border: 0;
-    background-color: #efefef;
 }
 #closeWindow:hover
 {
-    color: red;
-}
-
-#quesTitle,
-#quesContent
-{
-    width: 200px;
+    color: #fff;
+    background-color: grey;
 }
 
 /*弹出窗口结束*/

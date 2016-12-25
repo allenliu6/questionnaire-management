@@ -25,9 +25,9 @@ var newTable = (function(w, undefined) {
 		render() {
 			var data = this.data;
 			tableBody.innerHTML = "",
-			statusClass = "";
+				statusClass = "";
 			for (let i = 0; data[i]; i++) {
-				data[i].status = judgeDate( data[i].deadline ) ? "发布中" : "已结束"; //通过日期比较判断状态
+				data[i].status = judgeDate(data[i].deadline) ? "发布中" : "已结束"; //通过日期比较判断状态
 				statusClass = data[i].status === "发布中" ? "greenColor" : "";
 				tableBody.innerHTML += `<tr><td><input type="checkbox" name=""></td><td>${data[i].name}</td><td>${data[i].deadline}</td><td class=${statusClass}>${data[i].status}</td><td><button class="editBut">编辑</button><button class="deleteBut">删除</button><button>查看数据</button></td>`;
 			}
@@ -56,31 +56,52 @@ var newTable = (function(w, undefined) {
 			//删除点击
 			var deleteBut = [],
 				deleteMore = getId("deleteMore"),
-				_this = this; //this为调用对象 newTable
+				_this = this; //this为调用对象 Table
 			deleteBut = deleteBut.concat(...tableBody.getElementsByClassName("deleteBut"));
 
 			for (var i = 0, length = deleteBut.length; i < length; i++) {
 				deleteBut[i].onclick = (function(n) {
 					return function() {
 						_this.deleteQueue = [n];
-						alertObj.windowInit("context", "删除" + _this.data[n].name, _this, "delete");
+						alertObj.init({
+							obj: _this,
+							content: [`是否删除 ${_this.data[n].name} 问卷`],
+							contentType: [0],
+							bottomFunc: [_this.delete, '']
+						});
 					};
 				})(i);
 			}
 			deleteBut = null;
 
+			/*数据绑定  默认是登录弹出窗口  header只能存在文字和一个默认存在的关闭按钮  content可以有输入框或者文字  bottom可以设置多个按钮 
+			//
+			headerText: '',
+			content:['','',]
+			contentNum:[2,1]//对应content数量，默认为1
+			contentType: [0,1], 0字符串 1文本输入框 2数字输入框
+			bottom:['','']*/
+
+
+			//删除多个
 			deleteMore.onclick = function() {
 				var detail = "";
 				_this.deleteQueue = [];
 				for (let i = 0; checkbox[i]; i++) {
 					if (checkbox[i].checked) {
 						_this.deleteQueue.push(i);
-
-						detail += _this.data[i].name;
+						checkbox[i].checked = '';
+						chooseAll.onclick = select;
+						detail += (_this.data[i].name + " ");
 					}
 				}
 				if (detail) {
-					alertObj.windowInit("context", "删除" + detail, _this, "delete");
+					alertObj.init({
+						obj: _this,
+						content: [`是否删除 ${detail} 问卷`],
+						contentType: [0],
+						bottomFunc: [_this.delete, '']
+					});
 					chooseAll.checked = "";
 				}
 			};
@@ -93,30 +114,33 @@ var newTable = (function(w, undefined) {
 				editButs[i].onclick = (function(n) {
 					return function() {
 						_this.editQueue = n;
-						alertObj.windowInit("context", "编辑" + _this.data[n].name, _this, "edit");
+						alertObj.init({
+							obj: _this,
+							content: [`是否编辑 ${_this.data[n].name} 问卷`],
+							contentType: [0],
+							bottomFunc: [_this.edit, '']
+						});
 					};
 				})(i);
 			}
 
 		},
 
-		confirmTrue: {//点击弹出窗口的确认后进行的函数 
-			delete() {
-				var deleteQueue = this.deleteQueue;
-				console.log(deleteQueue);
-				for (var i = 0, length = deleteQueue.length; i < length; i++) {
-					this.data.splice(deleteQueue[i] - i, 1);
-					//彻底删除?  关于addEvent函数删除按钮 单选框的引用  全部删除后addEvent被回收吗？ 应该不会
-				}
-				this.init();
-			},
+		delete() {
+			var deleteQueue = this.deleteQueue;
+			console.log(this);
+			for (var i = 0, length = deleteQueue.length; i < length; i++) {
+				this.data.splice(deleteQueue[i] - i, 1);
+				//彻底删除?  关于addEvent函数删除按钮 单选框的引用  全部删除后addEvent被回收吗？ 应该不会
+			}
+			this.init();
+		},
 
-			edit() {//把要编辑的数据提取出来赋值给editPaper  跳转页面
-				localStorage.editPaper = JSON.stringify(this.data.splice( this.editQueue, 1)[0]);
-				localStorage.qnData = JSON.stringify(this.data);
-				location.href = "createTool.html";
-			},
-		}
+		edit() { //把要编辑的数据提取出来赋值给editPaper  跳转页面
+			localStorage.editPaper = JSON.stringify(this.data.splice(this.editQueue, 1)[0]);
+			localStorage.qnData = JSON.stringify(this.data);
+			location.href = "createTool.html";
+		},
 
 	};
 

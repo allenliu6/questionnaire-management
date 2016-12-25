@@ -53,17 +53,35 @@ var createTool = function(w, undefined) {
 			};
 
 			questionTypes[0].onclick = function() {
-				alertObj.windowInit("input", "单选", _this);
+				alertObj.init({
+					obj: _this,
+					headerText: '单选题详情单',
+					content: ['请输入问题标题和问题选项，问题选项以 ”，“ 为分隔','标题', '内容'],
+					contentType: [0,1,1],
+					bottomFunc: [_this.inputHandle]
+				});
 				_this.lastType = 0;
 			};
 
 			questionTypes[1].onclick = function() {
-				alertObj.windowInit("input", "多选", _this);
+				alertObj.init({
+					obj: _this,
+					headerText: '多选题详情单',
+					content: ['请输入问题标题和问题选项，问题选项以 ”，“ 为分隔','标题', '内容'],
+					contentType: [0,1,1],
+					bottomFunc: [_this.inputHandle]
+				});
 				_this.lastType = 1;
 			};
 
 			questionTypes[2].onclick = function() {
-				alertObj.windowInit("input", "文本", _this);
+				alertObj.init({
+					obj: _this,
+					headerText: '文本题详情单',
+					content: ['请输入问题标题','标题'],
+					contentType: [0,1],
+					bottomFunc: [_this.inputHandle]
+				});
 				_this.lastType = 2;
 			};
 
