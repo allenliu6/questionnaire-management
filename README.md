@@ -3,6 +3,8 @@
 项目概况：
   想先重构一下之前项目的代码，整体描述一下整个小系统，基本分为问卷列表页，问卷编辑页，查看数据页面，填写数据页，后期会加入登录以及登录附加功能
   
+  
+  
 项目实施：
   前端 打算基本使用原生js实现功能，css预处理会使用sass，ui基本直接采用设计图的，另外整个项目参照fork过来的 https://github.com/allenliu6/ife-2016/tree/master/personal/harryfyodor/task4-v1/app/JS
 
