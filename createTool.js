@@ -8,7 +8,6 @@
 
 
 var createTool = function(w, undefined) {
-	//console.log(JSON.parse(localStorage.qnData));
 	/*
 		support
 	*/
@@ -23,12 +22,11 @@ var createTool = function(w, undefined) {
 		},
 		init() { //函数初始化  检查是否是编辑才跳转 如果是则对data进行初始化再进行渲染页面绑定事件
 			if (localStorage.editPaper) {
-				console.log(this.data)
 				this.data = JSON.parse(localStorage.editPaper)
-				this.renderQuestion();
+				this.renderQuestion(); //重新刷新页面
 				this.renderTitleDate();
 			}
-			this.addBasicEvents();
+			this.addBasicEvents();//为页面所有可点击元素添加事件
 
 		},
 		addBasicEvents() { //为页面所有可点击元素添加事件
@@ -41,7 +39,7 @@ var createTool = function(w, undefined) {
 				pushQues = getId("pushQues"),
 				_this = this;
 
-			setTitle.onclick = function() {
+			setTitle.onclick = function() {//初始化标题
 				setTitle.value = "";
 				setTitle.onclick = null;
 				setTitle = null;
@@ -49,6 +47,7 @@ var createTool = function(w, undefined) {
 
 			addQuestion.onclick = function() {
 				questionType.style.display = "block";
+				addQuestion.onclick = null;
 				addQuestion = null;
 			};
 
@@ -96,6 +95,8 @@ var createTool = function(w, undefined) {
 			};
 
 			questionTypes = null;
+			storeQues = null;
+			pushQues = null;
 		},
 
 		renderQuestion() { //重新刷新页面
@@ -103,11 +104,11 @@ var createTool = function(w, undefined) {
 				optionHTML = "",
 				inputType;
 
-			console.log(this.data.content);
 			for (var j = 0; content[j]; j++) {
 				inputType = this.getInputType(content[j].type);
 
-				optionHTML += `<div class="questionDetail"><p>Q${ j+1 }</p><div class="detailRight"><div>${ content[j].title }</div>`;
+				optionHTML += `<div class="questionDetail"><p>Q${ j+1 }</p>
+								<div class="detailRight"><div>${ content[j].title }</div>`;
 
 				if (content[j].type == 2) { //如果上次点击为文本框即为文本框
 					optionHTML += `<textarea></textarea>`;
@@ -118,7 +119,8 @@ var createTool = function(w, undefined) {
 					optionHTML += `<div><input type=${ inputType }>${ content[j].option[i] }</div>`;
 				}
 
-				optionHTML += `<div><a class="moveUp">上移</a><a class="moveDown">下移</a><a class="copy">复用</a><a class="deleteDom">删除</a></div></div></div>`;
+				optionHTML += `<div><a class="moveUp">上移</a><a class="moveDown">下移</a>
+									<a class="copy">复用</a><a class="deleteDom">删除</a></div></div></div>`;
 			}
 
 			this.paperContent.innerHTML = optionHTML;
@@ -286,7 +288,7 @@ var createTool = function(w, undefined) {
 
 			localStorage.qnData = JSON.stringify(data);
 			localStorage.removeItem("editPaper");
-			location.href = "task50.html"
+			location.href = "index.html"
 		},
 
 	};

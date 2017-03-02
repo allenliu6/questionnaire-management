@@ -112,7 +112,7 @@ const alertObj = function(w) {
 			const _this = this;
 
 			this.win.innerHTML = `
-			<div id="header"><span>${headerText}</span><input type="button" name="" id="closeWindow" value="X"></div><div class="content"><div>${this.createContent({content,contentNum,contentType})}</div></div><div class="bottom">${this.createBottom(bottom)}</div>`;
+			<div id="header"><span>${headerText}</span><input type="button" id="closeWindow" value="X"></div><div class="content"><div>${this.createContent({content,contentNum,contentType})}</div></div><div class="bottom">${this.createBottom(bottom)}</div>`;
 
 
 			this.closeWindow = getId("closeWindow");

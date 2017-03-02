@@ -7,12 +7,12 @@
 
 
 		//id获取元素
-		var getId = function ( id ){
+		const getId = function ( id ){
 			return document.getElementById( id ) || null;
 		};
 
 		//嗅探 获取元素内嵌和外联样式
-		var getStyle = function(oDiv, attr){
+		const getStyle = function(oDiv, attr){
 	        if(oDiv.currentStyle){
 	            //针对IE浏览器
 	            return oDiv.currentStyle[attr];
@@ -23,7 +23,7 @@
 	    };
 
 	    //传入符合一定格式的日期 未来日期返回true 过去日期返回false
-	    var judgeDate = function( date ){
+	    const judgeDate = function( date ){
 			var nowTime = new Date(),
 				setDate = new Date(date);
 
