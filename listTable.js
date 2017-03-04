@@ -6,6 +6,15 @@
 	}*/
 
 
+/*数据绑定  默认是登录弹出窗口  header只能存在文字和一个默认存在的关闭按钮  
+				content可以有输入框或者文字  bottom可以设置多个按钮 
+			//
+			headerText: '',
+			content:['','',]
+			contentType: [0,1], 0字符串 1文本输入框 2数字输入框
+			bottom:['','']  默认为确认取消按钮
+			*/
+
 var newTable = (function(w, undefined) {
 	console.log(JSON.parse(localStorage.qnData), localStorage.editPaper);
 	var table = {
@@ -13,6 +22,7 @@ var newTable = (function(w, undefined) {
 		data: JSON.parse(localStorage.qnData),
 		deleteQueue: [],//删除队列
 		editQueue: 0,//编辑队列
+		lastDone:'',
 
 		//初始化函数集
 		init() {
@@ -38,24 +48,57 @@ var newTable = (function(w, undefined) {
 
 		//添加事件 全选全不选 删除按钮点击
 		addEvent() {
-			var checkbox = tableBody.getElementsByTagName("input"),
-				chooseAll = getId("chooseAll"),
+			this.bindDelete()
+			this.bindEdit()
+			this.bindSelect()
+			this.bindSetter()
+		},
 
-				select = function() {
-					for (let i = 0; checkbox[i]; i++) {
-						checkbox[i].checked = "checked";
+		bindSetter(){
+			let _this = this;
+			alertObj.eventBus = {
+				set value(x){
+					if(x[0]){
+						switch(_this.lastDone){
+							case 'edit': 
+								_this.edit();
+								break;
+							
+							case 'delete':
+								_this.delete()
+								break;
+
+							case 'deleteMore':
+								_this.delete()
+								break;
+						}
 					}
-					chooseAll.onclick = unselect;
+				}
+			}
+		},
+
+		bindSelect(){
+				this.checkbox = tableBody.getElementsByTagName("input");
+				this.chooseAll = getId("chooseAll");
+				_this = this;
+
+				this.select = function() {
+					for (let i = 0; _this.checkbox[i]; i++) {
+						_this.checkbox[i].checked = "checked";
+					}
+					_this.chooseAll.onclick = _this.unselect;
 				},
-				unselect = function() {
-					for (let i = 0; checkbox[i]; i++) {
-						checkbox[i].checked = "";
+				this.unselect = function() {
+					for (let i = 0; _this.checkbox[i]; i++) {
+						_this.checkbox[i].checked = "";
 					}
-					chooseAll.onclick = select;
+					_this.chooseAll.onclick = _this.select;
 				};
 			//全选全不选设置
-			chooseAll.onclick = select;
+			this.chooseAll.onclick = _this.select;
+		},
 
+		bindDelete(){
 			//删除点击
 			var deleteBut = [],
 				deleteMore = getId("deleteMore"),//多项删除按钮
@@ -66,69 +109,57 @@ var newTable = (function(w, undefined) {
 				deleteBut[i].onclick = (function(n) {
 					return function() {
 						_this.deleteQueue = [n];//记录当前是第几个点击了删除按钮
+						_this.lastDone = 'delete'
 						alertObj.init({
-							obj: _this,
 							content: [`是否删除 ${_this.data[n].name} 问卷`],
 							contentType: [0],
-							bottomFunc: [_this.delete, '']//为alert的button传入删除函数
 						});
 					};
 				})(i);
 			}
 			deleteBut = null;
 
-			/*数据绑定  默认是登录弹出窗口  header只能存在文字和一个默认存在的关闭按钮  
-				content可以有输入框或者文字  bottom可以设置多个按钮 
-			//
-			headerText: '',
-			content:['','',]
-			contentNum:[2,1]//对应content数量，默认为1
-			contentType: [0,1], 0字符串 1文本输入框 2数字输入框
-			bottom:['',''] 默认为
-			*/
-
-
 			//删除多个
 			deleteMore.onclick = function() {
 				var detail = "";//承载传递给alert的content信息
 				_this.deleteQueue = [];//重置删除队列
-				for (let i = 0; checkbox[i]; i++) {//遍历全部多选框，查看是否选中
-					if (checkbox[i].checked) {
+				_this.lastDone = 'deleteMore'
+				for (let i = 0; _this.checkbox[i]; i++) {//遍历全部多选框，查看是否选中
+					if (_this.checkbox[i].checked) {
 						_this.deleteQueue.push(i);
-						checkbox[i].checked = '';
-						chooseAll.onclick = select;
+						_this.checkbox[i].checked = '';
+						_this.chooseAll.onclick = _this.select;
 						detail += (_this.data[i].name + " ");
 					}
 				}
 				if (detail) {
 					alertObj.init({
-						obj: _this,
 						content: [`是否删除 ${detail} 问卷`],
 						contentType: [0],
-						bottomFunc: [_this.delete, '']
 					});
-					chooseAll.checked = "";
+					_this.chooseAll.checked = "";
 				}
 			};
+		},
 
+		bindEdit(){
 			//编辑点击
-			var editButs = [];
+			var editButs = [],
+				_this = this;
 			editButs = editButs.concat(...tableBody.getElementsByClassName("editBut"));
 
 			for (var i = 0, length = editButs.length; i < length; i++) {
 				editButs[i].onclick = (function(n) {
 					return function() {
 						_this.editQueue = n;//记录当前是第几个点击了编辑按钮
+						_this.lastDone = 'edit'
 						alertObj.init({
-							obj: _this,
 							content: [`是否编辑 ${_this.data[n].name} 问卷`],
 							contentType: [0],
-							bottomFunc: [_this.edit, '']//传递给alert的编辑函数
 						});
 					};
 				})(i);
 			}
-
 		},
 
 		delete() {

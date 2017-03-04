@@ -51,33 +51,27 @@ var createTool = function(w, undefined) {
 
 			questionTypes[0].onclick = function() {
 				alertObj.init({
-					obj: _this,
 					headerText: '单选题详情单',
 					content: ['请输入问题标题和问题选项，问题选项以 ”，“ 为分隔','标题', '内容'],
 					contentType: [0,1,1],
-					bottomFunc: [_this.inputHandle]
 				});
 				_this.lastType = 0;
 			};
 
 			questionTypes[1].onclick = function() {
 				alertObj.init({
-					obj: _this,
 					headerText: '多选题详情单',
 					content: ['请输入问题标题和问题选项，问题选项以 ”，“ 为分隔','标题', '内容'],
 					contentType: [0,1,1],
-					bottomFunc: [_this.inputHandle]
 				});
 				_this.lastType = 1;
 			};
 
 			questionTypes[2].onclick = function() {
 				alertObj.init({
-					obj: _this,
 					headerText: '文本题详情单',
 					content: ['请输入问题标题','标题'],
 					contentType: [0,1],
-					bottomFunc: [_this.inputHandle]
 				});
 				_this.lastType = 2;
 			};
@@ -91,6 +85,16 @@ var createTool = function(w, undefined) {
 					_this.pushQues();
 				}
 			};
+
+			//设置set绑定value，如果在alert中发生变化则进行输入处理
+			//value = [boolean, [title, option]]  第一参数为title，第二个参数为option
+			alertObj.eventBus = {
+				set value(x){
+					if(x[0]){
+						_this.inputHandle(x[1][0],x[1][1])
+					}
+				}
+			}
 
 			questionTypes = null;
 			storeQues = null;
