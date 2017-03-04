@@ -8,9 +8,6 @@
 
 
 var createTool = function(w, undefined) {
-	/*
-		support
-	*/
 
 	var createTool = {
 		paperContent: getId("paperContent"),
@@ -26,10 +23,11 @@ var createTool = function(w, undefined) {
 				this.renderQuestion(); //重新刷新页面
 				this.renderTitleDate();
 			}
-			this.addBasicEvents();//为页面所有可点击元素添加事件
+			this.addBasicEvents();//为原HTML页面所有可点击元素添加事件
 
 		},
-		addBasicEvents() { //为页面所有可点击元素添加事件
+
+		addBasicEvents() { //为HTML页面结构所有可点击元素添加事件
 			var createBody = getId("createBody"),
 				setTitle = getId("setTitle"),
 				addQuestion = getId("addQuestion"),
@@ -99,7 +97,7 @@ var createTool = function(w, undefined) {
 			pushQues = null;
 		},
 
-		renderQuestion() { //重新刷新页面
+		renderQuestion() { //重新刷新所有问卷内容部分
 			var content = this.data.content,
 				optionHTML = "",
 				inputType;
@@ -127,7 +125,7 @@ var createTool = function(w, undefined) {
 			this.addDetailEvents();
 		},
 
-		renderTitleDate() {
+		renderTitleDate() {//若是编辑行为则渲染问卷名称和截止日期
 			var title = this.data.name,
 				deadline = this.data.deadline,
 				setTitle = getId("setTitle"),
@@ -138,49 +136,49 @@ var createTool = function(w, undefined) {
 
 		},
 
-		addDetailEvents() { //给当前进行四种操作的问题元素显式绑定函数
-			var moveUp = this.paperContent.getElementsByClassName("moveUp"),
-				moveDown = this.paperContent.getElementsByClassName("moveDown"),
-				copy = this.paperContent.getElementsByClassName("copy"),
-				deleteDom = this.paperContent.getElementsByClassName("deleteDom"),
+		addDetailEvents() { //给可以进行四种操作的问题内容元素 显式绑定四种行为函数
+			var moveUps = this.paperContent.getElementsByClassName("moveUp"),
+				moveDowns = this.paperContent.getElementsByClassName("moveDown"),
+				copys = this.paperContent.getElementsByClassName("copy"),
+				deleteDoms = this.paperContent.getElementsByClassName("deleteDom"),
 				_this = this;
 
-			for (var i = 1; moveUp[i]; i++) {
-				moveUp[i].onclick = (function(n) {
+			for (var i = 1; moveUps[i]; i++) {
+				moveUps[i].onclick = (function(n) {
 					return function() {
 						_this.fourOperate.moveUp.call(_this, n);
 					};
 				})(i);
 			}
 
-			for (var i = 0, length = moveDown.length - 1; i < length; i++) {
-				moveDown[i].onclick = (function(n) {
+			for (var i = 0, length = moveDowns.length - 1; i < length; i++) {
+				moveDowns[i].onclick = (function(n) {
 					return function() {
 						_this.fourOperate.moveDown.call(_this, n);
 					};
 				})(i);
 			}
 
-			for (i = 0; copy[i]; i++) {
-				copy[i].onclick = (function(n) {
+			for (i = 0; copys[i]; i++) {
+				copys[i].onclick = (function(n) {
 					return function() {
 						_this.fourOperate.copy.call(_this, n);
 					};
 				})(i);
 			}
 
-			for (i = 0; deleteDom[i]; i++) {
-				deleteDom[i].onclick = (function(n) {
+			for (i = 0; deleteDoms[i]; i++) {
+				deleteDoms[i].onclick = (function(n) {
 					return function() {
 						_this.fourOperate.deleteDom.call(_this, n);
 					};
 				})(i);
 			}
 
-			deleteDom = null;
-			copy = null;
-			moveDown = null;
-			moveUp = null;
+			deleteDoms = null;
+			copys = null;
+			moveDowns = null;
+			moveUps = null;
 		},
 
 
@@ -199,7 +197,6 @@ var createTool = function(w, undefined) {
 			console.log(this.data.content);
 
 			this.renderQuestion();
-
 		},
 
 		getInputType(type) { //获取问题类型
@@ -242,19 +239,16 @@ var createTool = function(w, undefined) {
 			}
 		},
 
-		storeQues() { //先检查日期 在检查问卷名称 检查问卷题目的数目 检查每个问题的问题描述和选项是否为空 若全部通过验证则弹出窗口返回true
+		storeQues() { //保存按钮   先检查日期 在检查问卷名称 检查问卷题目的数目 检查每个问题的问题描述和选项是否为空 若全部通过验证则弹出窗口返回true
 			var dateInput = getId("dateInput"),
 				setTitle = getId("setTitle"),
 				data = this.data;
 			data.deadline = dateInput.value;
 			data.name = setTitle.value;
 
-			console.log(Date.parse(data.deadline));
 			//检查数据是否合格
-			if (data.deadline) { //?日期验证
-
+			if (data.deadline) { 
 				if (data.name) {
-
 					if (data.content.length) {
 						for (var i = 0, content = data.content; content[i]; i++) {
 							if (!content[i].title || !content[i].option) {
@@ -269,20 +263,15 @@ var createTool = function(w, undefined) {
 					} else {
 						alert(`请添加问卷题目`);
 					}
-
 				} else {
 					alert("请输入正确问卷名称");
 				}
-
 			} else {
 				alert("请输入正确的日期");
 			}
-
-
 		},
 
-		pushQues() { //给localStorage的qnData赋值 移除编辑项即localStorage.editPaper 跳转页面
-			console.log(JSON.parse(localStorage.qnData));
+		pushQues() { //发布按钮   给localStorage的qnData赋值 移除编辑项即localStorage.editPaper 跳转页面
 			var data = JSON.parse(localStorage.qnData);
 			data.push(this.data);
 

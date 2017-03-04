@@ -1,6 +1,9 @@
 const alertObj = function(w) {
 
 	const alertModule = {
+		//
+		//support
+		//
 
 		//对象消失
 		disappear(dis) {
@@ -51,6 +54,7 @@ const alertObj = function(w) {
 			return str;
 		},
 
+		//创建按钮
 		createBottom(obj) {
 			let str = '';
 			for (let i of obj) {

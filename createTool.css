@@ -353,17 +353,18 @@ content
     height: 0;
 }
 
-.calendarContainer .calendarPosition
+.calendarContainer #calendarPosition
 {
     position: absolute;
 
     margin-top: -25px;
     margin-left: 8%;
+
+    display: none;
 }
 
-#head
+.head
 {
-    display: none;
 
     width: 260px;
     height: 25px;
@@ -374,24 +375,23 @@ content
     color: #fff;
     background-color: #ee7419;
 }
-#head .headRight,
-#head .headLeft,
-#headContent
+.head .headRight,
+.head .headLeft,
+.headContent
 {
     line-height: 25px;
 
     height: 25px;
 }
-#head select
+.head select
 {
     height: 100%;
 
     cursor: pointer;
 }
-#table
+.table
 {
     display: table;
-    display: none;
 
     margin: 0 auto;
 
@@ -402,7 +402,7 @@ content
     border: solid 1px #f1f1f1;
 }
 
-#table td,
+.table td,
 th
 {
     line-height: 30px;
@@ -410,14 +410,14 @@ th
     width: 35px;
     height: 30px;
 }
-#table td
+.table td
 {
     cursor: pointer;
     text-align: center;
 }
-#table thead
+.table thead
 {
-    font-size: 20px;
+    font-size: 16px;
 
     margin-bottom: 10px;
 
@@ -434,7 +434,7 @@ th
 
     width: 20%;
 }
-#headContent
+.headContent
 {
     float: left;
 
@@ -446,7 +446,7 @@ th
 
     width: 20%;
 }
-#head div span
+.head div span
 {
     cursor: pointer;
 }
